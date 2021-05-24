@@ -1,14 +1,14 @@
 import java.util.Random;
 
-public class Die {
+public class Die implements Comparable<Die> {
     private int value;
 
     public Die() {
         rollDie();
     }
 
-    private void rollDie() {
-        this.value = roll();
+    public void rollDie() {
+        setValue(roll());
     }
 
     public void setValue(int value) {
@@ -21,5 +21,15 @@ public class Die {
 
     public int roll() {
         return new Random().nextInt(6) + 1;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    @Override
+    public int compareTo(Die o) {
+        return Integer.compare(this.getValue(), o.getValue());
     }
 }

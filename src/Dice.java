@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Dice {
 
     private Die die1;
@@ -10,6 +8,7 @@ public class Dice {
     public Dice() {
         die1 = new Die();
         die2 = new Die();
+        setDouble(die1.getValue()==die2.getValue());
     }
 
     public void rollDice() {
@@ -40,5 +39,11 @@ public class Dice {
 
     public void setDouble(boolean aDouble) {
         isDouble = aDouble;
+    }
+
+    @Override
+    public String toString() {
+        return  "die1=" + die1 +
+                ", die2=" + die2;
     }
 }

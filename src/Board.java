@@ -34,7 +34,7 @@ public class Board {
     /*
         List of checkers' stacks
      */
-    private List<Stack<Checker>> places = new ArrayList<>();
+    private final List<Stack<Checker>> places = new ArrayList<>();
 
     public Board() {
         initBoard();
@@ -69,12 +69,12 @@ public class Board {
         }
     }
 
+    public void moveCheckers(Move move) {
+        places.get(move.getToPosition()).push(places.get(move.getFromPosition()).pop());
+    }
 
-    public void moveCheckers(Move move, int num) {
-        while (num != 0) {
-            places.get(move.getToPosition()).push(places.get(move.getFromPosition()).pop());
-            num--;
-        }
+    public void moveMoreCheckers(Move move, int num) {
+        places.get(move.getToPosition()).push(places.get(move.getFromPosition()).pop());
     }
 
     public void printBoard() {
@@ -82,15 +82,19 @@ public class Board {
         for (int i = 0; i < places.size(); i++) {
             System.out.println(i + ": " + (places.get(i).isEmpty() ? "free" : places.get(i).size() + "*" + places.get(i).peek().getColor()));
         }
-//
-//        for ( Stack<Checker> stack : places ) {
-//
-//            System.out.println(
-//                    places.indexOf(stack)
-//                    + ": "
-//                    + (stack.isEmpty() ? "free" : stack.size() + "*" + stack.peek().getColor())
-//            );
-//        }
 
     }
+
+    public Color checkWinner() {
+        if (places.get(26).size() == 15)
+            return Color.WHITE;
+
+        if (places.get(27).size() == 15)
+            return Color.BLACK;
+
+        return null;
+    }
+
+
+
 }

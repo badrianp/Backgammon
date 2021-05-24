@@ -1,16 +1,15 @@
-public class Move implements Comparable{
+import java.util.Objects;
+
+public class Move implements Comparable<Move>{
     private int fromPosition;
     private int toPosition;
-    private int count;
 
     public Move(int fromPosition, int toPosition) {
         setFromPosition(fromPosition);
         setToPosition(toPosition);
-        setCount(count);
     }
 
     public Move() {
-
     }
 
     public int getFromPosition() {
@@ -29,19 +28,24 @@ public class Move implements Comparable{
         this.toPosition = toPosition;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Move move) {
+        return this.getFromPosition() == move.getFromPosition()
+                && this.getToPosition() == move.getToPosition() ? 0 : 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Move move = (Move) o;
-        return this.getFromPosition() == ((Move) o).getFromPosition() && this.getToPosition() == move.getToPosition() ? 0 : 1;
+        return fromPosition == move.fromPosition && toPosition == move.toPosition;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fromPosition, toPosition);
     }
 
     @Override
