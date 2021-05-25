@@ -1,20 +1,18 @@
+package gameplay;
+
 public class Dice {
 
     private Die die1;
     private Die die2;
-    private boolean isDouble;
-
 
     public Dice() {
         die1 = new Die();
         die2 = new Die();
-        setDouble(die1.getValue()==die2.getValue());
     }
 
     public void rollDice() {
         die1 = new Die();
         die2 = new Die();
-        setDouble(die1.getValue()==die2.getValue());
     }
 
     public Die getDie1() {
@@ -34,16 +32,12 @@ public class Dice {
     }
 
     public boolean isDouble() {
-        return isDouble;
-    }
-
-    public void setDouble(boolean aDouble) {
-        isDouble = aDouble;
+        return (die1.getValue() == die2.getValue());
     }
 
     @Override
     public String toString() {
-        return  "die1=" + die1 +
-                ", die2=" + die2;
+        return  "die1 = '" + die1 +
+                "' and die2 = '" + die2 + "'";
     }
 }

@@ -1,3 +1,5 @@
+package gameplay;
+
 import java.util.Random;
 
 public class Die implements Comparable<Die> {
@@ -7,8 +9,13 @@ public class Die implements Comparable<Die> {
         rollDie();
     }
 
+    public Die(int value) {
+        setValue(value);
+    }
+
     public void rollDie() {
-        setValue(roll());
+        int newVal = roll();
+        setValue(newVal);
     }
 
     public void setValue(int value) {
@@ -16,11 +23,7 @@ public class Die implements Comparable<Die> {
     }
 
     public int getValue() {
-        return value;
-    }
-
-    public int roll() {
-        return new Random().nextInt(6) + 1;
+        return this.value;
     }
 
     @Override
@@ -30,6 +33,11 @@ public class Die implements Comparable<Die> {
 
     @Override
     public int compareTo(Die o) {
+        if ( o == null) return 1;
         return Integer.compare(this.getValue(), o.getValue());
+    }
+
+    public int roll() {
+        return new Random().nextInt(6) + 1;
     }
 }

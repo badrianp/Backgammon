@@ -1,15 +1,33 @@
+package gameplay;
+
 import java.util.Objects;
 
 public class Move implements Comparable<Move>{
     private int fromPosition;
     private int toPosition;
+    private Die die;
 
     public Move(int fromPosition, int toPosition) {
         setFromPosition(fromPosition);
         setToPosition(toPosition);
     }
 
-    public Move() {
+    public Move(int fromPosition, int toPosition, Die die) {
+        setFromPosition(fromPosition);
+        setToPosition(toPosition);
+        setDie(die);
+    }
+
+    public Die getDie() {
+        return die;
+    }
+
+    public Move getRevertMove() {
+        return new Move(this.toPosition,this.fromPosition);
+    }
+
+    public void setDie(Die die) {
+        this.die = die;
     }
 
     public int getFromPosition() {
@@ -50,7 +68,7 @@ public class Move implements Comparable<Move>{
 
     @Override
     public String toString() {
-        return "move: " + fromPosition +
-                "-->" + toPosition;
+        return "\nmove = [ " + fromPosition +
+                " -> " + toPosition + " ]" + (getDie()!= null ? " (die: " + die + ")" : null);
     }
 }

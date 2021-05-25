@@ -1,3 +1,5 @@
+package gameplay;
+
 public class Checker {
 
     private Color color;
