@@ -16,7 +16,7 @@ public class Game {
             new InputStreamReader(System.in));
 
     public Game(Player player1, Player player2, Board board) {
-        this.board = board;
+        this.board = (board != null) ? board : new Board();
         setPlayer1(player1);
         setPlayer2(player2);
     }

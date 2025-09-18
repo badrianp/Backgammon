@@ -241,7 +241,11 @@ public class ValidMoves {
     }
 
     public void setBoard(Board board) {
-        this.board.setPlaces(board.getPlaces());
+        if (board == null) {
+            throw new IllegalArgumentException("board cannot be null");
+        }
+        this.board = board;
+        // this.board.setPlaces(board.getPlaces());
     }
 
     public void setColor(Color color) {
